@@ -235,10 +235,9 @@ export const getFileExtension = (url: string): string | null => {
   try {
     const pathname = new URL(url).pathname;
     const extension = pathname.split(".").pop();
+
     return extension ? extension.toUpperCase() : null;
   } catch {
-    // If URL parsing fails, try to extract from the string directly
-    const extension = url.split(".").pop()?.split("?")[0];
-    return extension ? extension.toUpperCase() : null;
+    return null;
   }
 };
