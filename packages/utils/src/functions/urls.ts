@@ -234,7 +234,14 @@ export function buildUrl(
 export const getFileExtension = (url: string): string | null => {
   try {
     const pathname = new URL(url).pathname;
-    const extension = pathname.split(".").pop();
+
+    const filename = pathname.split("/").pop();
+
+    if (!filename || !filename.includes(".")) {
+      return null;
+    }
+
+    const extension = filename.split(".").pop();
 
     return extension ? extension.toUpperCase() : null;
   } catch {
